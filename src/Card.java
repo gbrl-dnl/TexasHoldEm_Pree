@@ -6,6 +6,7 @@ public class Card {
         this.suit = suit;
         this.rank = rank;
     }
+
     // Add a constructor that takes a String consisting of two characters as an argument,
     // with the suit as first character and rank as second character
     // examples: "D2"= DIAMOND-TWO, "HA"= HEART-ACE, "ST"= SPADE-TEN, "CK"= CLUB-KING
