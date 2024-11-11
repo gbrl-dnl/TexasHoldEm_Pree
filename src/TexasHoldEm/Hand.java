@@ -1,5 +1,11 @@
+// Danieli, Gabriel
+
+package TexasHoldEm;
+
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Hand {
     private Card[] cards;
@@ -25,15 +31,24 @@ public class Hand {
         this.handValue = calcHandValue();
     }
 
-    private HandVal calcHandValue() {
+    public HandVal calcHandValue() {
         // Placeholder for the actual hand value calculation logic
         // This will involve checking for various hand combinations
         // such as pairs, straights, flushes, etc.
 
         // Example logic (not complete):
+
+        // Check for duplicate cards
+        Set<String> cardSet = new HashSet<>();
+        for(Card card : cards) {
+           cardSet.add(card.toString());
+        }
+        if (cardSet.size() != cards.length) {
+            return HandVal.NOT_VALID;
+        }
+
         // 1. Sort the cards by rank
         Arrays.sort(cards, Comparator.comparing(Card::getRank));
-
 
         // Check royal flush
         boolean isRoyalFlush = false;
@@ -63,10 +78,6 @@ public class Hand {
             return HandVal.STRAIGHT_FLUSH;
         }
 
-
-
-
-
         // Check for four of a kind
         boolean isFourOfAKind = false;
         for (int i = 0; i < cards.length - 3; i++) {
@@ -76,6 +87,7 @@ public class Hand {
                 isFourOfAKind = true;
                 break;
             }
+        }
 
         // Check for full house
         boolean isFullHouse = false;
@@ -94,8 +106,6 @@ public class Hand {
         boolean isFlush = Arrays.stream(cards).allMatch(card -> card.getSuit() == cards[0].getSuit());
         if (isFlush) {
             return HandVal.FLUSH;
-        }
-
         }
         if (isFourOfAKind) {
             return HandVal.POKER;

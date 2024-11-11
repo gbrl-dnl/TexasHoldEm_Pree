@@ -1,4 +1,8 @@
-// HandVal corresponds to Texas Hold'em poker hand values
+// Danieli, Gabriel
+
+package TexasHoldEm;
+
+// main.HandVal corresponds to Texas Hold'em poker hand values
 public enum HandVal {
     HIGH_CARD(0),
     PAIR(1),
